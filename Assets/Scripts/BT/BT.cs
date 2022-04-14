@@ -5,7 +5,7 @@ using UnityEngine;
 public class BT : BTBase
 {
     //composities
-    private Selector rootSelector;
+    private Selector rootSelector; //wander attack hunt hide
     private Sequencer wanderSeq;
 
     //nodes
@@ -35,7 +35,7 @@ public class BT : BTBase
         //adding actions to lists
         rootSelector.AddNode(wanderSeq);
 
-        wanderSeq.AddNode(setPlace);
+        wanderSeq.AddNode(randomPos);
         wanderSeq.AddNode(wanderNode);
     }
 }
