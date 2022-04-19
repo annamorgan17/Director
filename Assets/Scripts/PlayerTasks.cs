@@ -11,16 +11,18 @@ public class PlayerTasks : MonoBehaviour
     public bool touched = false;
 
     private float timer;
+    private bool triggered = false;
     void Update()
     {
         timer += Time.deltaTime;
 
-        if(timer >= 30.0f)
+        if(timer >= 10.0f && triggered == false)
         {
             int ran = Random.Range(0, keyItems.Length);
 
-            textBox.text = "Go Touch" + keyItems[ran].name;
+            textBox.text = "Go Touch " + keyItems[ran].name;
             locations[ran].SetActive(true);
+            triggered = true;
 
         }
 
@@ -35,6 +37,7 @@ public class PlayerTasks : MonoBehaviour
 
             timer = 0;
 
+            triggered = false;
             touched = false;
         }
     }
