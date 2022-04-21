@@ -20,7 +20,7 @@ public class EnemyAI : MonoBehaviour
         bahaviourTree = new BT(this);
         RenderComponent = GetComponent<Renderer>();
         anim = GetComponent<Animator>();
-            }
+    }
 
     private void Update()
     {
