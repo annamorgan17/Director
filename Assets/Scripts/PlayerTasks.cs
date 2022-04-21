@@ -16,7 +16,7 @@ public class PlayerTasks : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if(timer >= 10.0f && triggered == false)
+        if(timer >= 30.0f && triggered == false)
         {
             int ran = Random.Range(0, keyItems.Length);
 
