@@ -3237,6 +3237,10 @@ PrefabInstance:
       propertyPath: speedReduction
       value: 0.35
       objectReference: {fileID: 0}
+    - target: {fileID: 4459864850019384740, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: unlimitedSprint
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4459864850019384750, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_Name
       value: FirstPersonController
@@ -4557,6 +4561,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &1247098937
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247098933}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.85028744
+  m_Height: 1.7469057
+  m_Direction: 1
+  m_Center: {x: -0.017331004, y: 1.1551778, z: -0.021928668}
 --- !u!1 &1253266423
 GameObject:
   m_ObjectHideFlags: 0
@@ -4589,8 +4607,9 @@ MonoBehaviour:
   passiveWanderDistance: 90
   stoppingDistance: 2
   setPoint: {fileID: 0}
-  player: {fileID: 0}
-  ai: {fileID: 1586085331}
+  player: {fileID: 1586085331}
+  ai: {fileID: 0}
+  playerHealth: 10
   playerSightLength: 0
   playerSightAngle: 0
   enemyDistance: 0
@@ -4867,6 +4886,10 @@ PrefabInstance:
     - target: {fileID: 111292, guid: 332254905319da1469830bd3e8725b48, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 111292, guid: 332254905319da1469830bd3e8725b48, type: 3}
+      propertyPath: m_TagString
+      value: Creature
       objectReference: {fileID: 0}
     - target: {fileID: 494698, guid: 332254905319da1469830bd3e8725b48, type: 3}
       propertyPath: m_RootOrder
@@ -6061,6 +6084,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4459864850019384738, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
   m_PrefabInstance: {fileID: 959940293}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1586085338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586085331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed30d819d4b8a4b4890f6851117c6ab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 1183365886}
+  sprintedTooLong: 0
+--- !u!135 &1586085339
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586085331}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.9741344
+  m_Center: {x: 0, y: 0, z: -0.068998575}
 --- !u!1001 &1587685943
 PrefabInstance:
   m_ObjectHideFlags: 0

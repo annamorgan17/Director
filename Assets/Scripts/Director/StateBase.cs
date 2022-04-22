@@ -15,12 +15,19 @@ public class StateBase : MonoBehaviour
 
     [SerializeField]
     private PlayerTasks tasks;
+    private PlayerScript player;
 
     private float intensity;
     private float seenByPlayerTime;
 
+    private void Start()
+    {
+        player = AIManager.GetPlayer.gameObject.GetComponent<PlayerScript>();
+    }
+
     private void Update()
     {
+
         switch(currentState)
         {
             //low intensity
@@ -80,6 +87,12 @@ public class StateBase : MonoBehaviour
         if(distance < AIManager.GetEnemyDistance)
         {
             intensity = intensity + 0.2f;
+        }
+
+        if(player.sprintedTooLong == true)
+        {
+            intensity = intensity + 0.7f;
+            player.sprintedTooLong = false;
         }
     }
 

@@ -13,21 +13,21 @@ public class MyCustomEditor : Editor
         //wander
         Handles.color = Color.white;
         Handles.DrawWireArc(Vector3.zero, Vector3.up, Vector3.forward, 360, info.passiveWanderDistance);
-               
-        ////player sight
-        //Vector3 viewAngleA = info.DirFromAngle(-info.playerSightAngle / 2, false);
-        //Vector3 viewAngleB = info.DirFromAngle(info.playerSightAngle / 2, false);
-        //Handles.DrawLine(info.player.transform.position, info.player.transform.position + viewAngleA * info.playerSightLength);
-        //Handles.DrawLine(info.player.transform.position, info.player.transform.position + viewAngleB * info.playerSightLength);
 
-        ////distance from player to enemy close
-        //Handles.color = Color.red;
-        //Handles.DrawWireArc(info.player.transform.position, Vector3.up, Vector3.forward, 360, info.enemyDistance);
+        //player sight
+        Vector3 viewAngleA = info.DirFromAngle(-info.playerSightAngle / 2, false);
+        Vector3 viewAngleB = info.DirFromAngle(info.playerSightAngle / 2, false);
+        Handles.DrawLine(info.player.transform.position, info.player.transform.position + viewAngleA * info.playerSightLength);
+        Handles.DrawLine(info.player.transform.position, info.player.transform.position + viewAngleB * info.playerSightLength);
 
-        ////distance from player to enemy far
-        //Handles.color = Color.green;
-        //Handles.DrawWireArc(info.player.transform.position, Vector3.up, Vector3.forward, 360, info.calmDistance);
-    
+        //distance from player to enemy close
+        Handles.color = Color.red;
+        Handles.DrawWireArc(info.player.transform.position, Vector3.up, Vector3.forward, 360, info.enemyDistance);
+
+        //distance from player to enemy far
+        Handles.color = Color.green;
+        Handles.DrawWireArc(info.player.transform.position, Vector3.up, Vector3.forward, 360, info.calmDistance);
+
 
 
     }
