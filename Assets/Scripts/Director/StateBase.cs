@@ -14,7 +14,6 @@ public class StateBase : MonoBehaviour
     public INTENSITY_STATE currentState = INTENSITY_STATE.BUILD_UP;
 
     [SerializeField]
-    private PlayerTasks tasks;
     private PlayerScript player;
 
     private float intensity;

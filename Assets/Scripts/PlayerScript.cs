@@ -12,10 +12,12 @@ public class PlayerScript : MonoBehaviour
     private float noiseValue = 0;
 
     private FirstPersonController controller;
+    private PlayerTasks tasks;
 
     private void Start()
     {
         controller = gameObject.GetComponent<FirstPersonController>();
+        tasks = gameObject.GetComponent<PlayerTasks>();
     }
     void Update()
     {

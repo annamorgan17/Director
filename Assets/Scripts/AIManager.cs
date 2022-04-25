@@ -10,6 +10,8 @@ public class AIManager : MonoBehaviour
     [Space(20)]
     public float passiveWanderDistance;
     public float stoppingDistance;
+    public float hearingRadius;
+    public float instantHeardRadius;
     public GameObject setPoint; //test
     [Space(20)]
     public GameObject player;
@@ -29,6 +31,8 @@ public class AIManager : MonoBehaviour
     //BT
     public static float GetPassiveWander { get { return instance.passiveWanderDistance; } }
     public static float GetStoppingDist { get { return instance.stoppingDistance; } }
+    public static float GetHearingRadius { get { return instance.hearingRadius; } }
+    public static float GetInstantHeardRadius { get { return instance.instantHeardRadius; } }
     public static GameObject GetSetPoint { get { return instance.setPoint; } }
     //character getter
     public static GameObject GetPlayer { get { return instance.player; } }
