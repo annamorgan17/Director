@@ -83,6 +83,9 @@ public class BT : BTBase
         crouchingSequence.AddNode(pursueSequence);
 
         walkingSequence.AddNode(walkCheck);
-        
+
+        pursueSequence.AddNode(pursueNode);
+        pursueSequence.AddNode(attackNode);
+
     }
 }

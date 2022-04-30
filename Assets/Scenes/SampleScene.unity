@@ -4553,6 +4553,8 @@ MonoBehaviour:
   stoppingDistance: 2
   hearingRadius: 0
   instantHeardRadius: 0
+  walkSpeed: 3
+  runSpeed: 4.2
   setPoint: {fileID: 0}
   player: {fileID: 1586085331}
   ai: {fileID: 0}
@@ -4848,15 +4850,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 494698, guid: 332254905319da1469830bd3e8725b48, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.5097122
+      value: 10.61
       objectReference: {fileID: 0}
     - target: {fileID: 494698, guid: 332254905319da1469830bd3e8725b48, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00000166893
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 494698, guid: 332254905319da1469830bd3e8725b48, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 24.6
+      value: 33.7
       objectReference: {fileID: 0}
     - target: {fileID: 494698, guid: 332254905319da1469830bd3e8725b48, type: 3}
       propertyPath: m_LocalRotation.w

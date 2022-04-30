@@ -12,6 +12,7 @@ public class WanderNode : Node
 
     public override NodeState Update()
     {
+        owner.anim.SetInteger("battle", 0);
 
         if (owner.currentTarget != null) 
         {
@@ -20,6 +21,7 @@ public class WanderNode : Node
             if (distance > AIManager.GetStoppingDist)
             {
                 owner.NavComponent.isStopped = false;
+                owner.NavComponent.speed = AIManager.GetWalkSpeed;
                 owner.anim.SetInteger("moving", 1);
                 owner.NavComponent.SetDestination(owner.currentTarget);
                 Debug.Log("wandering -- walking");

@@ -50,7 +50,7 @@ public class MyCustomEditor : Editor
         };
         GettersTitle.normal.textColor = Color.green;
 
-        EditorGUI.LabelField((new Rect(15, 105, 400, 10)), "Character Getters", GettersTitle);
+        EditorGUI.LabelField((new Rect(15, 185, 400, 10)), "Character Getters", GettersTitle);
 
         GUIStyle DirectorTitle = new GUIStyle
         {
@@ -59,7 +59,7 @@ public class MyCustomEditor : Editor
         };
         DirectorTitle.normal.textColor = Color.cyan;
 
-        EditorGUI.LabelField((new Rect(15, 165, 400, 10)), "Director Settings", DirectorTitle);
+        EditorGUI.LabelField((new Rect(15, 245, 400, 10)), "Director Settings", DirectorTitle);
 
         base.OnInspectorGUI(); 
 

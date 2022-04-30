@@ -14,6 +14,8 @@ public class EnemyAI : MonoBehaviour
 
     public Vector3 currentTarget;
 
+    public bool justAttacked = false;
+
     private void Start()
     {
         NavComponent = gameObject.GetComponent<NavMeshAgent>();

@@ -5,13 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class AIManager : MonoBehaviour
 {
-    private static AIManager instance;
+    private static AIManager instance; //fixed by setting in start and chaning the script execution order, to run ai manager before default
 
     [Space(20)]
     public float passiveWanderDistance;
     public float stoppingDistance;
     public float hearingRadius;
     public float instantHeardRadius;
+    public float walkSpeed;
+    public float runSpeed;
     public GameObject setPoint; //test
     [Space(20)]
     public GameObject player;
@@ -33,6 +35,8 @@ public class AIManager : MonoBehaviour
     public static float GetStoppingDist { get { return instance.stoppingDistance; } }
     public static float GetHearingRadius { get { return instance.hearingRadius; } }
     public static float GetInstantHeardRadius { get { return instance.instantHeardRadius; } }
+    public static float GetWalkSpeed { get { return instance.walkSpeed; } }
+    public static float GetRunSpeed { get { return instance.runSpeed; } }
     public static GameObject GetSetPoint { get { return instance.setPoint; } }
     //character getter
     public static GameObject GetPlayer { get { return instance.player; } }
@@ -50,11 +54,14 @@ public class AIManager : MonoBehaviour
     public static float GetFadeIntensity { get { return instance.fadeIntensity; } }
     public static float GetRelaxIntensity { get { return instance.relaxIntensity; } }
 
+    private void Start()
+    {
+        instance = this;
+    }
 
     private void Update()
     {
-        instance = this;
-
+        
         if(playerHealth <= 0)
         {
             SceneManager.LoadScene(0);
