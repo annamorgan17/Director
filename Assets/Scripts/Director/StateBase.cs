@@ -14,10 +14,9 @@ public class StateBase : MonoBehaviour
     public INTENSITY_STATE currentState = INTENSITY_STATE.BUILD_UP;
 
     [SerializeField]
-    private PlayerScript player;
-
     private float intensity;
     private float seenByPlayerTime;
+    private PlayerScript player;
 
     private void Start()
     {
@@ -26,6 +25,8 @@ public class StateBase : MonoBehaviour
 
     private void Update()
     {
+        CalcIncreaseIntensity();
+        CalcDecreaseIntensity();
 
         switch(currentState)
         {

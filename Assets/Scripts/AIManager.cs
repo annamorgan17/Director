@@ -12,6 +12,8 @@ public class AIManager : MonoBehaviour
     public float stoppingDistance;
     public float hearingRadius;
     public float instantHeardRadius;
+    public float sightDistance;
+    public float sightRadius;
     public float walkSpeed;
     public float runSpeed;
     public GameObject setPoint; //test
@@ -68,11 +70,20 @@ public class AIManager : MonoBehaviour
         }
     }
 
-    public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal) 
+    public Vector3 DirFromAngleAI(float angleInDegrees, bool angleIsGlobal) 
     {
         if (!angleIsGlobal)
         {
-            angleInDegrees += transform.eulerAngles.y;
+            angleInDegrees += ai.transform.eulerAngles.y;
+        }
+        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+    }
+
+    public Vector3 DirFromAnglePlayer(float angleInDegrees, bool angleIsGlobal)
+    {
+        if (!angleIsGlobal)
+        {
+            angleInDegrees += player.transform.eulerAngles.y;
         }
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }

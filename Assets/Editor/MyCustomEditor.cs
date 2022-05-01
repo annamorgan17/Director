@@ -14,11 +14,25 @@ public class MyCustomEditor : Editor
         Handles.color = Color.white;
         Handles.DrawWireArc(Vector3.zero, Vector3.up, Vector3.forward, 360, info.passiveWanderDistance);
 
+        //ai hearing
+        Handles.color = Color.yellow;
+        Handles.DrawWireArc(info.ai.transform.position, Vector3.up, Vector3.forward, 360, info.hearingRadius);
+        Handles.color = Color.red;
+        Handles.DrawWireArc(info.ai.transform.position, Vector3.up, Vector3.forward, 360, info.instantHeardRadius);
+
+        //ai sight
+        Handles.color = Color.cyan;
+        Handles.DrawWireArc(info.ai.transform.position, info.ai.transform.up, info.ai.transform.forward, 360, info.sightDistance);
+        Vector3 AIViewAngleA = info.DirFromAngleAI(-info.sightRadius / 2, false);
+        Vector3 AIViewAngleB = info.DirFromAngleAI(info.sightRadius / 2, false);
+        Handles.DrawLine(info.ai.transform.position, info.ai.transform.position + AIViewAngleA * info.sightDistance);
+        Handles.DrawLine(info.ai.transform.position, info.ai.transform.position + AIViewAngleB * info.sightDistance);
+
         //player sight
-        Vector3 viewAngleA = info.DirFromAngle(-info.playerSightAngle / 2, false);
-        Vector3 viewAngleB = info.DirFromAngle(info.playerSightAngle / 2, false);
-        Handles.DrawLine(info.player.transform.position, info.player.transform.position + viewAngleA * info.playerSightLength);
-        Handles.DrawLine(info.player.transform.position, info.player.transform.position + viewAngleB * info.playerSightLength);
+        Vector3 playerViewAngleA = info.DirFromAnglePlayer(-info.playerSightAngle / 2, false);
+        Vector3 playerViewAngleB = info.DirFromAnglePlayer(info.playerSightAngle / 2, false);
+        Handles.DrawLine(info.player.transform.position, info.player.transform.position + playerViewAngleA * info.playerSightLength);
+        Handles.DrawLine(info.player.transform.position, info.player.transform.position + playerViewAngleB * info.playerSightLength);
 
         //distance from player to enemy close
         Handles.color = Color.red;
@@ -50,7 +64,7 @@ public class MyCustomEditor : Editor
         };
         GettersTitle.normal.textColor = Color.green;
 
-        EditorGUI.LabelField((new Rect(15, 185, 400, 10)), "Character Getters", GettersTitle);
+        EditorGUI.LabelField((new Rect(15, 225, 400, 10)), "Character Getters", GettersTitle);
 
         GUIStyle DirectorTitle = new GUIStyle
         {
@@ -59,7 +73,7 @@ public class MyCustomEditor : Editor
         };
         DirectorTitle.normal.textColor = Color.cyan;
 
-        EditorGUI.LabelField((new Rect(15, 245, 400, 10)), "Director Settings", DirectorTitle);
+        EditorGUI.LabelField((new Rect(15, 285, 400, 10)), "Director Settings", DirectorTitle);
 
         base.OnInspectorGUI(); 
 
