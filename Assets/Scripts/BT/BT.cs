@@ -19,11 +19,14 @@ public class BT : BTBase
 
     private Sequencer idleSequencer;
 
+    private Sequencer hideSequence;
+
     //nodes
     private WanderNode wanderNode;
     private PursueNode pursueNode;
     private AttackNode attackNode;
     private IdleNode idleNode;
+    private HideNode hideNode;
 
     //conditions
     private RandomPos randomPos;
@@ -35,10 +38,12 @@ public class BT : BTBase
     private CrouchNoiseCheck innerNoiseCheck;
     private JustAttacked justAttacked;
     private WalkTimer walkTimer;
+    private HideCheck hideCheck;
+    private FindCave findCave;
 
     public BT(EnemyAI owner) : base(owner)
     {
-        //connections
+        /* connections to scripts */
         //composites
         rootSelector = new Selector(owner);
         wanderSeq = new Sequencer(owner);
@@ -54,11 +59,14 @@ public class BT : BTBase
 
         idleSequencer = new Sequencer(owner);
 
+        hideSequence = new Sequencer(owner);
+
         //nodes
         wanderNode = new WanderNode(owner);
         pursueNode = new PursueNode(owner);
         attackNode = new AttackNode(owner);
         idleNode = new IdleNode(owner);
+        hideNode = new HideNode(owner);
 
         //conditions
         randomPos = new RandomPos(owner);
@@ -70,11 +78,14 @@ public class BT : BTBase
         innerNoiseCheck = new CrouchNoiseCheck(owner);
         justAttacked = new JustAttacked(owner);
         walkTimer = new WalkTimer(owner);
+        findCave = new FindCave(owner);
+        hideCheck = new HideCheck(owner);
 
-        //adding root
+        //add root connection
         Root = rootSelector;
 
-        //adding actions to lists
+        /* Adding nodes to lists */
+
         rootSelector.AddNode(wanderSeq);
 
         /*======== Wandering ======== */
@@ -92,6 +103,12 @@ public class BT : BTBase
 
         pursueSequence.AddNode(pursueNode);
         pursueSequence.AddNode(attackNode);
+
+        /*======== Hiding ======== */
+
+        hideSequence.AddNode(hideCheck);
+        hideSequence.AddNode(findCave);
+        hideSequence.AddNode(hideNode);
 
         /*======== Hearing ======== */
 

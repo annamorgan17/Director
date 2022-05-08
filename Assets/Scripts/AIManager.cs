@@ -16,6 +16,7 @@ public class AIManager : MonoBehaviour
     public float sightRadius;
     public float walkSpeed;
     public float runSpeed;
+    public GameObject[] caves;
     public GameObject setPoint; //test
     [Space(20)]
     public GameObject player;
@@ -31,6 +32,7 @@ public class AIManager : MonoBehaviour
     public float peakIntensity;
     public float fadeIntensity;
     public float relaxIntensity;
+    public bool hideBool;
 
     //BT
     public static float GetPassiveWander { get { return instance.passiveWanderDistance; } }
@@ -39,6 +41,7 @@ public class AIManager : MonoBehaviour
     public static float GetInstantHeardRadius { get { return instance.instantHeardRadius; } }
     public static float GetWalkSpeed { get { return instance.walkSpeed; } }
     public static float GetRunSpeed { get { return instance.runSpeed; } }
+    public static GameObject[] GetCaves { get { return instance.caves; } }
     public static GameObject GetSetPoint { get { return instance.setPoint; } }
     //character getter
     public static GameObject GetPlayer { get { return instance.player; } }
@@ -55,6 +58,7 @@ public class AIManager : MonoBehaviour
     public static float GetPeakIntensity { get { return instance.peakIntensity; } }
     public static float GetFadeIntensity { get { return instance.fadeIntensity; } }
     public static float GetRelaxIntensity { get { return instance.relaxIntensity; } }
+    public static bool GetHideBool { get { return instance.hideBool; } }
 
     private void Start()
     {
