@@ -13,7 +13,9 @@ public class EnemyAI : MonoBehaviour
     private BT bahaviourTree;
 
     public Vector3 currentTarget;
+    public Vector3 lastKnownLocation;
 
+    public bool hunt = false;
     public bool justAttacked = false;
     public float timer = 0;
 

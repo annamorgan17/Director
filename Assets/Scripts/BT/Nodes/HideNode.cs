@@ -11,7 +11,6 @@ public class HideNode : Node
 
     public override NodeState Update()
     {
-        
 
         float dist = Vector3.Distance(owner.transform.position, owner.currentTarget);
         if(dist > 1.0f)
@@ -30,6 +29,7 @@ public class HideNode : Node
             owner.anim.SetInteger("battle", 0);
             owner.NavComponent.isStopped = true;
             owner.NavComponent.speed = AIManager.GetWalkSpeed;
+            owner.hunt = false;
             owner.anim.SetInteger("moving", 0);
 
             owner.timer += Time.deltaTime;

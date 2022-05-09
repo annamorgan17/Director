@@ -5,14 +5,15 @@ using UnityEngine.AI;
 
 public class WanderNode : Node
 {
-    public WanderNode(EnemyAI owner) : base(owner)
+    int agro;
+    public WanderNode(EnemyAI owner, int m_agro) : base(owner)
     {
-
+        agro = m_agro;
     }
 
     public override NodeState Update()
     {
-        owner.anim.SetInteger("battle", 0);
+        owner.anim.SetInteger("battle", agro);
 
         if (owner.currentTarget != null) 
         {

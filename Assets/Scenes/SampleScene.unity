@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.01
@@ -4868,6 +4868,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentTarget: {x: 0, y: 0, z: 0}
+  lastKnownLocation: {x: 0, y: 0, z: 0}
+  hunt: 0
   justAttacked: 0
   timer: 0
 --- !u!195 &1247098935
@@ -4937,6 +4939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   passiveWanderDistance: 90
+  huntWanderDistance: 0
   stoppingDistance: 2
   hearingRadius: 15
   instantHeardRadius: 5
@@ -8724,6 +8727,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentTarget: {x: 0, y: 0, z: 0}
+  lastKnownLocation: {x: 0, y: 0, z: 0}
+  hunt: 0
   justAttacked: 0
   timer: 0
 --- !u!65 &1958256525
