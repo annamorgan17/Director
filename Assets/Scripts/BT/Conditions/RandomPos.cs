@@ -5,15 +5,16 @@ using UnityEngine.AI;
 
 public class RandomPos : Node
 {
-    public RandomPos(EnemyAI owner) : base(owner)
+    Vector3 target;
+    public RandomPos(EnemyAI owner, Vector3 m_target) : base(owner)
     {
-
+        target = m_target;
     }
 
     public override NodeState Update()
     {
         Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * AIManager.GetPassiveWander;
-        randomDirection += Vector3.zero;
+        randomDirection += target;
         NavMesh.SamplePosition(randomDirection, out NavMeshHit navhit, AIManager.GetPassiveWander, -1);
 
         if (navhit.position != Vector3.zero) 

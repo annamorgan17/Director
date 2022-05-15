@@ -16,6 +16,7 @@ public class WalkTimer : Node
 
         if(owner.timer >= 5.0f)
         {
+            owner.lastKnownLocation = AIManager.GetPlayer.transform.position;
             return NodeState.SUCCESS;
         }
         else

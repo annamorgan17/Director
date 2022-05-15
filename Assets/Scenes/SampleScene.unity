@@ -4869,6 +4869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTarget: {x: 0, y: 0, z: 0}
   lastKnownLocation: {x: 0, y: 0, z: 0}
+  wanderTarget: {x: 0, y: 0, z: 0}
   hunt: 0
   justAttacked: 0
   timer: 0
@@ -4939,7 +4940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   passiveWanderDistance: 90
-  huntWanderDistance: 0
+  huntWanderDistance: 40
   stoppingDistance: 2
   hearingRadius: 15
   instantHeardRadius: 5
@@ -4960,7 +4961,7 @@ MonoBehaviour:
   playerSightLength: 15
   playerSightAngle: 90
   enemyDistance: 13
-  calmDistance: 50
+  calmDistance: 60
   buildIntensity: 0
   peakIntensity: 0
   fadeIntensity: 0
@@ -8728,6 +8729,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTarget: {x: 0, y: 0, z: 0}
   lastKnownLocation: {x: 0, y: 0, z: 0}
+  wanderTarget: {x: 0, y: 0, z: 0}
   hunt: 0
   justAttacked: 0
   timer: 0

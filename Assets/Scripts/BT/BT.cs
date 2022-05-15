@@ -85,7 +85,7 @@ public class BT : BTBase
         huntNode = new HuntNode(owner);
 
         //conditions
-        randomPos = new RandomPos(owner);
+        randomPos = new RandomPos(owner, owner.wanderTarget);
         setPlace = new SetPlace(owner);
         inHearRadius = new CanHear(owner);
         jumpCheck = new IsPlayerjumping(owner);
@@ -106,6 +106,9 @@ public class BT : BTBase
 
         /* Adding nodes to lists */
 
+        rootSelector.AddNode(hideSequence);
+        rootSelector.AddNode(attackSequence);
+        rootSelector.AddNode(hearSequence);
         rootSelector.AddNode(closeWanderSequence);
         rootSelector.AddNode(wanderSeq); 
 
@@ -156,17 +159,15 @@ public class BT : BTBase
         hearSelector.AddNode(walkingSequence); //check if walking then whether its been long enough to pursue
 
         jumpSequence.AddNode(jumpCheck);
-        jumpSequence.AddNode(attackSelector);
+        jumpSequence.AddNode(attackSequence);
 
         crouchingSequence.AddNode(crouchCheck);
         crouchingSequence.AddNode(innerNoiseCheck);
-        crouchingSequence.AddNode(attackSelector);
+        crouchingSequence.AddNode(attackSequence);
 
         walkingSequence.AddNode(walkCheck);
         walkingSequence.AddNode(walkTimer);
-        walkingSequence.AddNode(attackSelector);
-
-        /*======== Seeing ======== */
+        walkingSequence.AddNode(huntSequence);
 
     }
 }

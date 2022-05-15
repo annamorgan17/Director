@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-
     public NavMeshAgent NavComponent { get; private set; }
     public Renderer RenderComponent { get; private set; }
     public Animator anim {get; private set;}
@@ -14,6 +13,7 @@ public class EnemyAI : MonoBehaviour
 
     public Vector3 currentTarget;
     public Vector3 lastKnownLocation;
+    public Vector3 wanderTarget;
 
     public bool hunt = false;
     public bool justAttacked = false;

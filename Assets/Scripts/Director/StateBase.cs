@@ -31,37 +31,57 @@ public class StateBase : MonoBehaviour
         switch(currentState)
         {
             //low intensity
-            case INTENSITY_STATE.BUILD_UP://change wander target, speed
+            case INTENSITY_STATE.BUILD_UP://normal wander but around player
                 {
                     if(intensity >= AIManager.GetPeakIntensity)
                     {
                         currentState = INTENSITY_STATE.SUSTAIN_PEAK;
                     }
+
+                    AIManager.GetAI.GetComponent<EnemyAI>().hunt = false; //stops close wander
+                    AIManager.GetAI.GetComponent<EnemyAI>().wanderTarget =  AIManager.GetPlayer.transform.position; //normal wander around player
+                    AIManager.SetWalkSpeed = AIManager.GetWalkSpeed + 3;
+                    AIManager.SetPassiveWander = AIManager.GetHuntWander;
                     break;
                 }
-            case INTENSITY_STATE.SUSTAIN_PEAK: //even closer target, hunt not wander
+            case INTENSITY_STATE.SUSTAIN_PEAK: //close wander around player
                 {
                     if (intensity >= AIManager.GetFadeIntensity)
                     {
                         currentState = INTENSITY_STATE.PEAK_FADE;
                     }
+
+                    AIManager.GetAI.GetComponent<EnemyAI>().hunt = true; //allows close wander
+                    AIManager.GetAI.GetComponent<EnemyAI>().lastKnownLocation = AIManager.GetPlayer.transform.position; //wanders around player location
+                    AIManager.SetRunSpeed = AIManager.GetRunSpeed + 3;
+                    AIManager.SetPassiveWander = 90;
                     break;
                 }
-            case INTENSITY_STATE.PEAK_FADE: //close area wander walk
+            case INTENSITY_STATE.PEAK_FADE: //wide area hunt
                 {
                     if (intensity >= AIManager.GetRelaxIntensity)
                     {
                         currentState = INTENSITY_STATE.RELAX;
                     }
+                    AIManager.GetAI.GetComponent<EnemyAI>().hunt = true; //allows close wander
+                    AIManager.GetAI.GetComponent<EnemyAI>().lastKnownLocation = Vector3.zero; //wanders around centre
+                    AIManager.SetHuntWander = AIManager.GetHuntWander + 10;
                     break;
                 }
                 //high intensity
-            case INTENSITY_STATE.RELAX: //normal wander until timer then hide
+            case INTENSITY_STATE.RELAX: //hide for a timer then normal wander
                 {
                     if (intensity <= AIManager.GetBuildIntensity)
                     {
                         currentState = INTENSITY_STATE.BUILD_UP;
                     }
+
+                    AIManager.SetHideBool = true; // allows hide
+                    AIManager.GetAI.GetComponent<EnemyAI>().hunt = false; //stops close wander
+                    AIManager.GetAI.GetComponent<EnemyAI>().justAttacked = false; //stops idle
+                    AIManager.SetRunSpeed = AIManager.GetRunSpeed - 3;
+                    AIManager.SetWalkSpeed = AIManager.GetWalkSpeed - 3;
+                    AIManager.SetHuntWander = AIManager.GetHuntWander - 10;
                     break;
                 }
         }
