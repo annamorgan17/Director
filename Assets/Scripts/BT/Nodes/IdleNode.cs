@@ -17,7 +17,7 @@ public class IdleNode : Node
 
         owner.timer += Time.deltaTime;
 
-        if(owner.timer >= 3.0f)
+        if(owner.timer >= 2.0f)
         {
             owner.timer = 0;
             owner.justAttacked = false;

@@ -44,6 +44,8 @@ public class AIManager : MonoBehaviour
     public static float GetHearingRadius { get { return instance.hearingRadius; } }
     public static float GetInstantHeardRadius { get { return instance.instantHeardRadius; } }
     public static float GetWalkSpeed { get { return instance.walkSpeed; } }
+    public static float GetSightDistance { get { return instance.sightDistance; } }
+    public static float GetSightRadius { get { return instance.sightRadius; } }
     public static float SetWalkSpeed { set { instance.walkSpeed = value; } }
     public static float GetRunSpeed { get { return instance.runSpeed; } }
     public static float SetRunSpeed { set { instance.runSpeed = value; } }

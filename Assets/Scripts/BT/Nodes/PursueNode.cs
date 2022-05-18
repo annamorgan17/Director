@@ -11,14 +11,13 @@ public class PursueNode : Node
 
     public override NodeState Update()
     {
-        owner.anim.SetInteger("battle", 1);
-
         owner.currentTarget = AIManager.GetPlayer.transform.position;
 
         float distance = Vector3.Distance(owner.currentTarget, owner.transform.position);
 
         if (distance > AIManager.GetStoppingDist)
         {
+            owner.anim.SetInteger("battle", 1);
             owner.NavComponent.isStopped = false;
             owner.NavComponent.speed = AIManager.GetRunSpeed;
             owner.anim.SetInteger("moving", 1);
@@ -26,7 +25,7 @@ public class PursueNode : Node
             Debug.Log("pursuing -- chasing");
             return NodeState.RUNNING; // if cant see or hear stop
         }
-        else if(distance < AIManager.GetStoppingDist)
+        else if(distance <= AIManager.GetStoppingDist)
         {
             owner.NavComponent.isStopped = true;
             Debug.Log("pursuing -- complete");
