@@ -15,9 +15,10 @@ public class CanHear : Node
 
         if(distance <= AIManager.GetHearingRadius)
         {
+            Debug.Log("heard");
             return NodeState.SUCCESS;
         }
-
+        Debug.Log("not heard");
         return NodeState.FAILURE;
 
     }

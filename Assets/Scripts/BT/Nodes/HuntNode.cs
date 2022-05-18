@@ -13,6 +13,11 @@ public class HuntNode : Node
     {
         owner.anim.SetInteger("battle", 1);
 
+        if(IfSee())
+        {
+            return NodeState.FAILURE;
+        }
+
         float distance = Vector3.Distance(owner.currentTarget, owner.transform.position);
 
         if (distance > AIManager.GetStoppingDist)
@@ -36,5 +41,27 @@ public class HuntNode : Node
         Debug.Log("Hunt -- failed");
         return NodeState.FAILURE;
 
+    }
+
+    private bool IfSee()
+    {
+        Collider[] targetsInVR = Physics.OverlapSphere(owner.transform.position, AIManager.GetSightDistance, LayerMask.GetMask("Player"));
+
+        for (int i = 0; i < targetsInVR.Length; i++)
+        {
+            Transform target = targetsInVR[i].transform;
+            Vector3 dirToTarget = (target.position - owner.transform.position).normalized;
+            if (Vector3.Angle(owner.transform.forward, dirToTarget) < AIManager.GetSightRadius)
+            {
+                float dstToTarget = Vector3.Distance(target.position, owner.transform.position);
+                if (!Physics.Raycast(owner.transform.position, dirToTarget, out RaycastHit hit, dstToTarget, LayerMask.GetMask("Object")))
+                {
+                    owner.lastKnownLocation = target.transform.position;
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }

@@ -11,6 +11,12 @@ public class PursueNode : Node
 
     public override NodeState Update()
     {
+        if(IfSee())
+        {
+            return NodeState.FAILURE;
+        }
+
+        owner.justAttacked = false;
         owner.currentTarget = AIManager.GetPlayer.transform.position;
 
         float distance = Vector3.Distance(owner.currentTarget, owner.transform.position);
@@ -36,5 +42,27 @@ public class PursueNode : Node
         Debug.Log("pursuing -- failed");
         return NodeState.FAILURE;
 
+    }
+
+    private bool IfSee()
+    {
+        Collider[] targetsInVR = Physics.OverlapSphere(owner.transform.position, AIManager.GetSightDistance, LayerMask.GetMask("Player"));
+
+        for (int i = 0; i < targetsInVR.Length; i++)
+        {
+            Transform target = targetsInVR[i].transform;
+            Vector3 dirToTarget = (target.position - owner.transform.position).normalized;
+            if (Vector3.Angle(owner.transform.forward, dirToTarget) < AIManager.GetSightRadius)
+            {
+                float dstToTarget = Vector3.Distance(target.position, owner.transform.position);
+                if (!Physics.Raycast(owner.transform.position, dirToTarget, out RaycastHit hit, dstToTarget, LayerMask.GetMask("Object")))
+                {
+                    owner.lastKnownLocation = target.transform.position;
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }
