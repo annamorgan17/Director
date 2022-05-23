@@ -40,7 +40,7 @@ public class StateBase : MonoBehaviour
 
                     AIManager.GetAI.GetComponent<EnemyAI>().hunt = false; //stops close wander
                     AIManager.GetAI.GetComponent<EnemyAI>().wanderTarget =  AIManager.GetPlayer.transform.position; //normal wander around player
-                    AIManager.SetWalkSpeed = AIManager.GetWalkSpeed + 3;
+                    AIManager.SetWalkSpeed = 7;
                     AIManager.SetPassiveWander = AIManager.GetHuntWander;
                     break;
                 }
@@ -50,10 +50,14 @@ public class StateBase : MonoBehaviour
                     {
                         currentState = INTENSITY_STATE.PEAK_FADE;
                     }
+                    if (intensity <= AIManager.GetPeakIntensity)
+                    {
+                        currentState = INTENSITY_STATE.BUILD_UP;
+                    }
 
                     AIManager.GetAI.GetComponent<EnemyAI>().hunt = true; //allows close wander
                     AIManager.GetAI.GetComponent<EnemyAI>().lastKnownLocation = AIManager.GetPlayer.transform.position; //wanders around player location
-                    AIManager.SetRunSpeed = AIManager.GetRunSpeed + 3;
+                    AIManager.SetRunSpeed = 9;
                     AIManager.SetPassiveWander = 90;
                     break;
                 }
@@ -63,9 +67,13 @@ public class StateBase : MonoBehaviour
                     {
                         currentState = INTENSITY_STATE.RELAX;
                     }
+                    if (intensity <= AIManager.GetFadeIntensity)
+                    {
+                        currentState = INTENSITY_STATE.SUSTAIN_PEAK;
+                    }
                     AIManager.GetAI.GetComponent<EnemyAI>().hunt = true; //allows close wander
                     AIManager.GetAI.GetComponent<EnemyAI>().lastKnownLocation = Vector3.zero; //wanders around centre
-                    AIManager.SetHuntWander = AIManager.GetHuntWander + 10;
+                    AIManager.SetHuntWander = 50;
                     break;
                 }
                 //high intensity
@@ -79,9 +87,9 @@ public class StateBase : MonoBehaviour
                     AIManager.SetHideBool = true; // allows hide
                     AIManager.GetAI.GetComponent<EnemyAI>().hunt = false; //stops close wander
                     AIManager.GetAI.GetComponent<EnemyAI>().justAttacked = false; //stops idle
-                    AIManager.SetRunSpeed = AIManager.GetRunSpeed - 3;
-                    AIManager.SetWalkSpeed = AIManager.GetWalkSpeed - 3;
-                    AIManager.SetHuntWander = AIManager.GetHuntWander - 10;
+                    AIManager.SetRunSpeed = 6;
+                    AIManager.SetWalkSpeed = 4;
+                    AIManager.SetHuntWander = 40;
                     break;
                 }
         }

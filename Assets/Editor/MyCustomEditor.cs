@@ -12,7 +12,7 @@ public class MyCustomEditor : Editor
 
         //wander
         Handles.color = Color.white;
-        Handles.DrawWireArc(Vector3.zero, Vector3.up, Vector3.forward, 360, info.passiveWanderDistance);
+        Handles.DrawWireArc(info.ai.GetComponent<EnemyAI>().wanderTarget, Vector3.up, Vector3.forward, 360, info.passiveWanderDistance);
 
         //hunt
         Handles.color = Color.blue;
