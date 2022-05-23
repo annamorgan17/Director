@@ -15,6 +15,7 @@ public class IsPlayerWalking : Node
 
         if (playerScript.isWalking == true)
         {
+            Debug.Log("walk heard");
             return NodeState.SUCCESS;
         }
 

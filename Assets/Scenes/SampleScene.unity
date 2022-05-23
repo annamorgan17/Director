@@ -4973,8 +4973,8 @@ MonoBehaviour:
   instantHeardRadius: 5
   sightDistance: 10
   sightRadius: 90
-  walkSpeed: 4
-  runSpeed: 6
+  walkSpeed: 5
+  runSpeed: 7.2
   caves:
   - {fileID: 638993142}
   - {fileID: 1077381548}

@@ -25,7 +25,9 @@ public class EnemyAI : MonoBehaviour
         bahaviourTree = new BT(this);
         RenderComponent = GetComponent<Renderer>();
         anim = GetComponent<Animator>();
-    }
+
+        lastKnownLocation = AIManager.GetPlayer.transform.position;
+}
 
     private void Update()
     {

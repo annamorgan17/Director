@@ -13,6 +13,7 @@ public class BT : BTBase
     private Sequencer walkingSequence;
     private Sequencer crouchingSequence;
     private Sequencer jumpSequence;
+    private Sequencer hearAttack;
 
     private Sequencer pursueSequence;
     private Selector attackSelector;
@@ -33,6 +34,7 @@ public class BT : BTBase
     private IdleNode idleNode;
     private HideNode hideNode;
     private HuntNode huntNode;
+    private FaceNode faceNode;
 
     //conditions
     private RandomPos randomPos;
@@ -63,6 +65,7 @@ public class BT : BTBase
         walkingSequence = new Sequencer(owner);
         crouchingSequence = new Sequencer(owner);
         jumpSequence = new Sequencer(owner);
+        hearAttack = new Sequencer(owner);
 
         pursueSequence = new Sequencer(owner);
         attackSelector = new Selector(owner);
@@ -83,6 +86,7 @@ public class BT : BTBase
         idleNode = new IdleNode(owner);
         hideNode = new HideNode(owner);
         huntNode = new HuntNode(owner);
+        faceNode = new FaceNode(owner);
 
         //conditions
         randomPos = new RandomPos(owner, owner.wanderTarget);
@@ -159,15 +163,19 @@ public class BT : BTBase
         hearSelector.AddNode(walkingSequence); //check if walking then whether its been long enough to pursue
 
         jumpSequence.AddNode(jumpCheck);
-        jumpSequence.AddNode(attackSequence);
+        jumpSequence.AddNode(hearAttack);
 
         crouchingSequence.AddNode(crouchCheck);
         crouchingSequence.AddNode(innerNoiseCheck);
-        crouchingSequence.AddNode(attackSequence);
+        crouchingSequence.AddNode(hearAttack);
 
         walkingSequence.AddNode(walkCheck);
         walkingSequence.AddNode(walkTimer);
         walkingSequence.AddNode(huntSequence);
 
+        /*======== Attacking If Heard ======== */
+
+        hearAttack.AddNode(faceNode);
+        hearAttack.AddNode(attackSelector);
     }
 }
