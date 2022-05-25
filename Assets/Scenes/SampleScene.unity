@@ -607,7 +607,7 @@ GameObject:
   - component: {fileID: 130662592}
   m_Layer: 6
   m_Name: hiddenPoint
-  m_TagString: Untagged
+  m_TagString: Cave
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2239,7 +2239,7 @@ GameObject:
   - component: {fileID: 638993144}
   m_Layer: 6
   m_Name: hiddenPoint
-  m_TagString: Untagged
+  m_TagString: Cave
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3937,7 +3937,7 @@ GameObject:
   - component: {fileID: 1077381550}
   m_Layer: 6
   m_Name: hiddenPoint
-  m_TagString: Untagged
+  m_TagString: Cave
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4989,10 +4989,10 @@ MonoBehaviour:
   playerSightAngle: 90
   enemyDistance: 20
   calmDistance: 30
-  buildIntensity: -100
-  peakIntensity: -50
-  fadeIntensity: 50
-  relaxIntensity: 100
+  buildIntensity: -150
+  peakIntensity: -100
+  fadeIntensity: 0
+  relaxIntensity: 150
   hideBool: 0
 --- !u!4 &1253266425
 Transform:
@@ -5020,8 +5020,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e29800f21f2b9046b6713b74fc620ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 3
-  intensity: -100
+  currentState: 1
+  intensity: 0
 --- !u!1 &1260342359 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000010357584986, guid: ff421997f346e314c82e73610f419ac1, type: 3}
@@ -5659,7 +5659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 494698, guid: 332254905319da1469830bd3e8725b48, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.38
+      value: 10.4
       objectReference: {fileID: 0}
     - target: {fileID: 494698, guid: 332254905319da1469830bd3e8725b48, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5667,7 +5667,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 494698, guid: 332254905319da1469830bd3e8725b48, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 25.05
+      value: 28.7
       objectReference: {fileID: 0}
     - target: {fileID: 494698, guid: 332254905319da1469830bd3e8725b48, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7459,7 +7459,7 @@ GameObject:
   - component: {fileID: 1611730846}
   m_Layer: 6
   m_Name: hiddenPoint
-  m_TagString: Untagged
+  m_TagString: Cave
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

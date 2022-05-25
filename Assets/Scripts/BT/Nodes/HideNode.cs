@@ -13,7 +13,7 @@ public class HideNode : Node
     {
 
         float dist = Vector3.Distance(owner.transform.position, owner.currentTarget);
-        if(dist > 1.0f)
+        if(dist > 3.0f)
         {
             owner.anim.SetInteger("battle", 1);
             owner.NavComponent.isStopped = false;
@@ -33,7 +33,8 @@ public class HideNode : Node
             owner.anim.SetInteger("moving", 0);
 
             owner.timer += Time.deltaTime;
-            if(owner.timer > 5.0f)
+
+            if(owner.timer >= 4.0f)
             {
                 return NodeState.SUCCESS;
             }

@@ -37,7 +37,7 @@ public class StateBase : MonoBehaviour
                     {
                         currentState = INTENSITY_STATE.SUSTAIN_PEAK;
                     }
-
+                    AIManager.SetHideBool = false; // stops hide
                     AIManager.GetAI.GetComponent<EnemyAI>().hunt = false; //stops close wander
                     AIManager.GetAI.GetComponent<EnemyAI>().wanderTarget =  AIManager.GetPlayer.transform.position; //normal wander around player
                     AIManager.SetWalkSpeed = 7;
