@@ -2,49 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PursueNode : Node
+public class PursueNode : Node //causes the creature to run at the player if they are still visible 
 {
-    public PursueNode(EnemyAI owner) : base(owner)
+    public PursueNode(EnemyAI owner) : base(owner) 
     {
 
     }
 
     public override NodeState Update()
     {
-        if(IfSee())
+        if(IfSee()) //if the creature cant see the player
         {
-            return NodeState.FAILURE;
+            return NodeState.FAILURE; //return fail
         }
 
-        owner.justAttacked = false;
-        owner.currentTarget = AIManager.GetPlayer.transform.position;
+        owner.justAttacked = false; //reset just attacked
+        owner.currentTarget = AIManager.GetPlayer.transform.position; //set current position to the player
 
-        float distance = Vector3.Distance(owner.currentTarget, owner.transform.position);
+        float distance = Vector3.Distance(owner.currentTarget, owner.transform.position); //calculate distance from creature to player
 
-        if (distance > AIManager.GetStoppingDist)
+        if (distance > AIManager.GetStoppingDist) //if bigger than stopping distance
         {
-            owner.anim.SetInteger("battle", 1);
-            owner.NavComponent.isStopped = false;
-            owner.NavComponent.speed = AIManager.GetRunSpeed;
-            owner.anim.SetInteger("moving", 1);
-            owner.NavComponent.SetDestination(owner.currentTarget);
-            Debug.Log("pursuing -- chasing");
-            return NodeState.RUNNING; // if cant see or hear stop
+            owner.anim.SetInteger("battle", 1); //start aggressive animation
+            owner.NavComponent.isStopped = false; //not stopped
+            owner.NavComponent.speed = AIManager.GetRunSpeed; //set spped to running
+            owner.anim.SetInteger("moving", 1); //start running animation
+            owner.NavComponent.SetDestination(owner.currentTarget); //move to player
+            Debug.Log("pursuing -- chasing"); //debug log
+            return NodeState.RUNNING; // return running
         }
-        else if(distance <= AIManager.GetStoppingDist)
+        else if(distance <= AIManager.GetStoppingDist) //if within stopping distance
         {
-            owner.NavComponent.isStopped = true;
-            Debug.Log("pursuing -- complete");
-            return NodeState.SUCCESS;
+            owner.NavComponent.isStopped = true; //stop moving
+            Debug.Log("pursuing -- complete"); //debug log
+            return NodeState.SUCCESS; //return success
         }
 
-        owner.NavComponent.isStopped = true;
-        Debug.Log("pursuing -- failed");
-        return NodeState.FAILURE;
+        owner.NavComponent.isStopped = true; //stop moving
+        Debug.Log("pursuing -- failed"); //debug log
+        return NodeState.FAILURE; //return fail
 
     }
 
-    private bool IfSee()
+    private bool IfSee() //uses the same vision cone code as canSee script with the returns swapped so that if the player isnt seen be true
     {
         Collider[] targetsInVR = Physics.OverlapSphere(owner.transform.position, AIManager.GetSightDistance, LayerMask.GetMask("Player"));
 

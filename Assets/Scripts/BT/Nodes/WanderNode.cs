@@ -3,52 +3,52 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WanderNode : Node
+public class WanderNode : Node //script for moving the creature to the random wander/hunt position
 {
-    int agro;
-    FirstPersonController playerScript;
+    int agro; //whether the creature needs aggressive or defauot animations
+    FirstPersonController playerScript; //links to the first person controller scirpt - not made by me - from unity asset store
     public WanderNode(EnemyAI owner, int m_agro) : base(owner)
     {
-        agro = m_agro;
-        playerScript = AIManager.GetPlayer.GetComponent<FirstPersonController>();
+        agro = m_agro; //sets agro to parameter
+        playerScript = AIManager.GetPlayer.GetComponent<FirstPersonController>(); //connect first person controller script
     }
 
     public override NodeState Update()
     {
-        owner.anim.SetInteger("battle", agro);
+        owner.anim.SetInteger("battle", agro); //set animation
 
-        if(IfSee() || IfHear())
+        if(IfSee() || IfHear()) //if the creature sees or hears the player
         {
-            return NodeState.FAILURE;
+            return NodeState.FAILURE; //return fail
         }
 
-        if (owner.currentTarget != null) 
+        if (owner.currentTarget != null)  //if noy null
         {
-            float distance = Vector3.Distance(owner.currentTarget, owner.transform.position);
+            float distance = Vector3.Distance(owner.currentTarget, owner.transform.position); //calculate distance from creature to target
 
-            if (distance > AIManager.GetStoppingDist)
+            if (distance > AIManager.GetStoppingDist) //if bigger than stopping distance
             {
-                owner.NavComponent.isStopped = false;
-                owner.NavComponent.speed = AIManager.GetWalkSpeed;
-                owner.anim.SetInteger("moving", 1);
-                owner.NavComponent.SetDestination(owner.currentTarget);
-                Debug.Log("wandering -- walking");
-                return NodeState.RUNNING; 
+                owner.NavComponent.isStopped = false; //moving
+                owner.NavComponent.speed = AIManager.GetWalkSpeed; //set speed to walk
+                owner.anim.SetInteger("moving", 1); //set moving animation
+                owner.NavComponent.SetDestination(owner.currentTarget); //move to target
+                Debug.Log("wandering -- walking"); //debug log
+                return NodeState.RUNNING;  //return running
             }
-            else 
+            else //if within stopping distance
             {
-                owner.NavComponent.isStopped = true;
-                Debug.Log("wandering -- complete");
-                return NodeState.SUCCESS; 
+                owner.NavComponent.isStopped = true; //stop moving
+                Debug.Log("wandering -- complete"); //debug log
+                return NodeState.SUCCESS; //return success
             }
         }
-        owner.NavComponent.isStopped = true;
-        Debug.Log("wandering -- failed");
-        return NodeState.FAILURE;
+        owner.NavComponent.isStopped = true; //stop moving
+        Debug.Log("wandering -- failed"); //debug log
+        return NodeState.FAILURE; //return fail
 
     }
 
-    private bool IfSee()
+    private bool IfSee() //same as the vision cone code from canSee script
     {
         Collider[] targetsInVR = Physics.OverlapSphere(owner.transform.position, AIManager.GetSightDistance, LayerMask.GetMask("Player"));
 
@@ -70,7 +70,7 @@ public class WanderNode : Node
         return false;
     }
 
-    private bool IfHear()
+    private bool IfHear() //checks the hearing radius like canHear script, then checks if the player was jumping
     {
         float distance = Vector3.Distance(owner.transform.position, AIManager.GetPlayer.transform.position);
 

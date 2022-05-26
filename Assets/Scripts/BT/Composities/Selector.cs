@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Selector : BaseComp 
+public class Selector : BaseComp //inherits from base comp, going through node list and only continuing if the previous node fails
 {
     public Selector(EnemyAI owner) : base(owner)
     {
@@ -10,37 +10,37 @@ public class Selector : BaseComp
     }
     public override NodeState Update()
     {
-        NodeState _nodeState = NodeState.FAILURE; 
-        Node currentNode = nodes[currentNodeIndex]; 
+        NodeState _nodeState = NodeState.FAILURE;  //default to fail
+        Node currentNode = nodes[currentNodeIndex]; //set current node to the current node
 
-        if (currentNode != null) 
+        if (currentNode != null) //if not null
         {
-            NodeState currentNodeState = currentNode.Update(); 
+            NodeState currentNodeState = currentNode.Update();  //run update
 
-            if (currentNodeState == NodeState.FAILURE) 
+            if (currentNodeState == NodeState.FAILURE) //if fails
             {
-                if (currentNodeIndex == nodes.Count - 1) 
+                if (currentNodeIndex == nodes.Count - 1) // and out of nodes
                 {
-                    _nodeState = NodeState.FAILURE; 
+                    _nodeState = NodeState.FAILURE;  //fail the selector
                 }
-                else 
+                else //if more nodes
                 {
-                    ++currentNodeIndex; 
-                    _nodeState = NodeState.RUNNING; 
+                    ++currentNodeIndex; //move to next node
+                    _nodeState = NodeState.RUNNING; //selector running
                 }
             }
-            else 
+            else //anything but fail
             {
-                _nodeState = currentNodeState; 
+                _nodeState = currentNodeState; //node state is the current node state
             }
         }
-
+        //after all nodes if fail or success
         if (_nodeState == NodeState.SUCCESS || _nodeState == NodeState.FAILURE) 
         {
-             ResetIndex(); 
+             ResetIndex(); //reset current node
         }
 
-        return _nodeState; 
+        return _nodeState; //return state
     }
 }
 

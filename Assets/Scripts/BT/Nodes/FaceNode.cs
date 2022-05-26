@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FaceNode :  Node
+public class FaceNode :  Node //turns the creature to face the player
 {
     public FaceNode(EnemyAI owner) : base(owner)
     {
@@ -11,9 +11,9 @@ public class FaceNode :  Node
 
     public override NodeState Update()
     {
-        owner.transform.LookAt(AIManager.GetPlayer.transform.position);
+        owner.transform.LookAt(AIManager.GetPlayer.transform.position); //rotates the creature to look at player
     
-        return NodeState.SUCCESS;
+        return NodeState.SUCCESS; //returns success
 
     }
 }

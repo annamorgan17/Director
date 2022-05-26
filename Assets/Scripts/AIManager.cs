@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class AIManager : MonoBehaviour
+public class AIManager : MonoBehaviour //used to store values which are used within multiple scripts, uses an insatnce of this class so that values can be non static as such are editable 
+                                        // within the inspector -- this makes it easier to adjust values while testing
 {
-    private static AIManager instance; //fixed by setting in start and chaning the script execution order, to run ai manager before default
+    private static AIManager instance; //insatnce of class
 
-    [Space(20)]
+    [Space(20)] //values relating to the behaviour tree, creature ai
     public float passiveWanderDistance;
     public float huntWanderDistance;
     public float stoppingDistance;
@@ -18,17 +19,17 @@ public class AIManager : MonoBehaviour
     public float walkSpeed;
     public float runSpeed;
     public GameObject[] caves;
-    public GameObject setPoint; //test
-    [Space(20)]
+    public GameObject setPoint; //test value no longer used
+    [Space(20)] //getters for the player and ai
     public GameObject player;
     public GameObject ai;
-    [Space(20)]
+    [Space(20)] //values realting to the player
     public float playerHealth = 0;
     public float playerSightLength;
     public float playerSightAngle;
     public float enemyDistance;
     public float calmDistance;
-    [Space(20)]
+    [Space(20)] //values relating to the director
     public float buildIntensity;
     public float peakIntensity;
     public float fadeIntensity;
@@ -71,18 +72,18 @@ public class AIManager : MonoBehaviour
 
     private void Start()
     {
-        instance = this;
+        instance = this; //set insatnce to this class
     }
 
     private void Update()
     {
-        
-        if(playerHealth <= 0)
+        if(playerHealth <= 0) //if player health is 0
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(0); //reset level
         }
     }
 
+    //these two functions are used to calculate a direction with an angle, they are only used within the custom editor to show vision cones
     public Vector3 DirFromAngleAI(float angleInDegrees, bool angleIsGlobal) 
     {
         if (!angleIsGlobal)

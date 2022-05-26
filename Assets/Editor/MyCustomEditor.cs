@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor (typeof (AIManager))] 
-public class MyCustomEditor : Editor
+public class MyCustomEditor : Editor //custom editor for showing ai and player distances as well as organising inspector
 {
     private void OnSceneGUI()
     {
@@ -53,44 +53,44 @@ public class MyCustomEditor : Editor
 
     public override void OnInspectorGUI() 
     {
-        GUIStyle AITitle = new GUIStyle
+        GUIStyle AITitle = new GUIStyle //title style for ai settings
         {
             fontSize = 18,
             fontStyle = FontStyle.Bold
         };
         AITitle.normal.textColor = Color.red;
 
-        EditorGUI.LabelField((new Rect(15, 25, 400, 10)), "Creature Settings", AITitle);
+        EditorGUI.LabelField((new Rect(15, 25, 400, 10)), "Creature Settings", AITitle); //adds title to inspector
 
-        GUIStyle GettersTitle = new GUIStyle
+        GUIStyle GettersTitle = new GUIStyle //title style for getter/setter settings
         {
             fontSize = 18,
             fontStyle = FontStyle.Bold
         };
         GettersTitle.normal.textColor = Color.yellow;
 
-        EditorGUI.LabelField((new Rect(15, 265, 400, 10)), "Character Getters", GettersTitle);
+        EditorGUI.LabelField((new Rect(15, 265, 400, 10)), "Character Getters", GettersTitle);//adds title to inspector
 
-        GUIStyle PlayerTitle = new GUIStyle
+        GUIStyle PlayerTitle = new GUIStyle //title style for player settings
         {
             fontSize = 18,
             fontStyle = FontStyle.Bold
         };
         PlayerTitle.normal.textColor = Color.green;
 
-        EditorGUI.LabelField((new Rect(15, 325, 400, 10)), "Player Settings", PlayerTitle);
+        EditorGUI.LabelField((new Rect(15, 325, 400, 10)), "Player Settings", PlayerTitle);//adds title to inspector
 
 
-        GUIStyle DirectorTitle = new GUIStyle
+        GUIStyle DirectorTitle = new GUIStyle //title style for director settings
         {
             fontSize = 18,
             fontStyle = FontStyle.Bold
         };
         DirectorTitle.normal.textColor = Color.cyan;
 
-        EditorGUI.LabelField((new Rect(15, 445, 400, 10)), "Director Settings", DirectorTitle);
+        EditorGUI.LabelField((new Rect(15, 445, 400, 10)), "Director Settings", DirectorTitle);//adds title to inspector
 
-        base.OnInspectorGUI(); 
+        base.OnInspectorGUI(); //continues with normal inspector settings
 
         
     }

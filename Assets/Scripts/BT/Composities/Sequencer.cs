@@ -5,43 +5,43 @@ using UnityEngine;
 
 public class Sequencer : BaseComp 
 {
-     public Sequencer(EnemyAI owner) : base(owner)
+     public Sequencer(EnemyAI owner) : base(owner) //inherts from base comp, will only move to next node if previous succeded
      {
 
      }
      public override NodeState Update()
      {
-        NodeState _nodeState = NodeState.FAILURE;
-        Node currentNode = nodes[currentNodeIndex];
+        NodeState _nodeState = NodeState.FAILURE;//fail as default
+        Node currentNode = nodes[currentNodeIndex]; //current node set to current node
 
-        if (currentNode != null)  
+        if (currentNode != null)  //if not null
         {
-            NodeState currentNodeState = currentNode.Update();  
+            NodeState currentNodeState = currentNode.Update();   //run update
 
-            if (currentNodeState == NodeState.SUCCESS) 
+            if (currentNodeState == NodeState.SUCCESS) //if success
             {
-                if (currentNodeIndex == nodes.Count - 1) 
+                if (currentNodeIndex == nodes.Count - 1) //out of nodes
                 {
-                    _nodeState = NodeState.SUCCESS; 
+                    _nodeState = NodeState.SUCCESS; //set as success
                 }
-                else 
+                else //if more nodes
                 {
-                    ++currentNodeIndex;
-                    _nodeState = NodeState.RUNNING;
+                    ++currentNodeIndex; //move to next node
+                    _nodeState = NodeState.RUNNING; //set as running
                 }
             }
-            else 
+            else //if anything but success
             {
-                _nodeState = currentNodeState;
+                _nodeState = currentNodeState; //set to current node state
             }
         }
-
+        //after all nodes if it succeeded or failed 
         if (_nodeState == NodeState.SUCCESS || _nodeState == NodeState.FAILURE)
         {
-            ResetIndex();
+            ResetIndex(); //reset curent node
         }
 
-        return _nodeState; 
+        return _nodeState; //return state 
      }
 }
 
