@@ -4988,11 +4988,11 @@ MonoBehaviour:
   playerSightLength: 15
   playerSightAngle: 90
   enemyDistance: 20
-  calmDistance: 30
-  buildIntensity: -150
-  peakIntensity: -100
-  fadeIntensity: 0
-  relaxIntensity: 150
+  calmDistance: 45
+  buildIntensity: -600
+  peakIntensity: -400
+  fadeIntensity: -200
+  relaxIntensity: 0
   hideBool: 0
 --- !u!4 &1253266425
 Transform:
@@ -5020,7 +5020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e29800f21f2b9046b6713b74fc620ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 1
+  currentState: 3
   intensity: 0
 --- !u!1 &1260342359 stripped
 GameObject:
